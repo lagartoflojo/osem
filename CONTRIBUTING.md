@@ -1,5 +1,5 @@
 # Request for contributions
-We are always looking for contributions to OSEM. Read this guide on how to do that. 
+We are always looking for contributions to OSEM. Read this guide on how to do that.
 
 In particular, this community seeks the following types of contributions:
 
@@ -7,7 +7,7 @@ In particular, this community seeks the following types of contributions:
 * ideas: participate in an issues thread or start your own to have your voice heard.
 * copy editing: fix typos, clarify language, and generally improve the quality of the content of OSEM
 
-### Runing OSEM for development
+### Running OSEM for development using Vagrant
 We are using [Vagrant](https://www.vagrantup.com/) to create our development environments.
 
 1. Install [Vagrant](https://www.vagrantup.com/downloads.html) and [VirtualBox](https://www.virtualbox.org/wiki/Downloads). Both tools support Linux, MacOS and Windows.
@@ -56,6 +56,21 @@ You can access the app [localhost:3000](http://localhost:3000). Whatever you cha
     ```
     vagrant exec bundle exec rake db:migrate
     ```
+
+### Running OSEM for development using Docker
+You can also use Docker to run your OSEM develoment environment.
+
+cp config/database.yml.docker config/database.yml
+cp dotenv.example .env
+docker-compose build
+docker-compose run web rake db:create db:migrate
+docker-compose run web rake data:demo # optional
+docker-compose run -e RAILS_ENV=test web rake db:create db:schema:load
+
+docker-compose up
+docker-compose run web rspec
+
+
 
 ## How to contribute
 * Prerequisite: familiarity with [GitHub Pull Requests](https://help.github.com/articles/using-pull-requests) and issues.
