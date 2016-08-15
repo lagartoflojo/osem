@@ -1,0 +1,12 @@
+development: &default
+  adapter: mysql2
+  encoding: utf8
+  database: osem_development
+  pool: 5
+  username: root
+  password: happyconferencing
+  host: db
+
+test:
+  <<: *default
+  database: osem_test

@@ -1,0 +1,24 @@
+version: '2'
+
+volumes:
+  gems:
+    driver: local
+
+services:
+  db:
+    image: mariadb:10.1
+    environment:
+      MYSQL_ROOT_PASSWORD: happyconferencing
+  web:
+    build: .
+    command: ./bin/start
+    volumes:
+      - .:/app
+      - gems:/usr/local/bundle
+    ports:
+      - "3000:3000"
+    tty: true
+    stdin_open: true
+    env_file: .env
+    depends_on:
+      - db
