@@ -222,6 +222,8 @@ group :test do
   gem 'timecop'
   # for mocking external requests
   gem 'webmock'
+  # For validating JSON schemas
+  gem 'json-schema'
 end
 
 group :development, :test do
